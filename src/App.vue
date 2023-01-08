@@ -1,32 +1,52 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+    <v-app id="inspire">
+        <!-- NAVBAR -->
+        <v-navigation-drawer v-model="drawer" app>
+            <v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title> Vue Crud </v-list-item-title>
+                    <v-list-item-subtitle>MEVN Full Stack</v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+            <v-divider></v-divider>
+            
+            <!-- NAVBAR LIST -->
+            <v-list>
+                <v-list-item-group color="primary">
+                    <v-list-item v-for="(item, i) in items" :key="i" :to="item.link" link>
+                        <v-list-item-icon>
+                            <v-icon v-text="item.icon"></v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>
+                            <h3 v-text="item.title"></h3>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list-item-group>
+            </v-list>
+        </v-navigation-drawer>
+
+        <v-app-bar app>
+            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+            <v-toolbar-title>SEC Playground</v-toolbar-title>
+        </v-app-bar>
+
+        <!-- MAIN CONTENT -->
+        <v-main>
+            <router-view></router-view>
+        </v-main>
+    </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+export default {
+    data: () => ({
+        drawer: null,
+        items: [
+            { title: "Home", icon: "mdi-home", link: "/" },
+            { title: "Add Post", icon: "mdi-note-plus", link: "/add-post" },
+            { title: "About", icon: "mdi-help-box", link: "/about" },
+        ],
+    }),
+};
+</script>
