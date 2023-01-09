@@ -1,7 +1,7 @@
 <template>
     <div class="ma-5">
         <div>
-            <h1>SEC Playground</h1>
+            <h1>MEVN Application</h1>
             <h2>Stack: MEVN (MongoDB, ExpressJs, VueJs, NodeJs)</h2>
         </div>
         <v-divider></v-divider>
