@@ -15,6 +15,7 @@
                         <v-text-field label="Title" v-model="post.title" prepend-icon="mdi-note">
                         </v-text-field>
 
+                        <!-- category -->
                         <v-text-field
                             label="Category"
                             v-model="post.category"
@@ -22,6 +23,7 @@
                         >
                         </v-text-field>
 
+                        <!-- content -->
                         <v-textarea
                             label="Content"
                             v-model="post.content"
@@ -29,6 +31,7 @@
                         >
                         </v-textarea>
 
+                        <!-- file input -->
                         <v-file-input
                             @change="selectFile"
                             show-size
@@ -39,7 +42,9 @@
                         </v-file-input>
                         <v-img :src="`/${post.image}`"></v-img>
 
+                        <!-- update button -->
                         <v-btn type="submit" class="mt-3 mr-3" color="success">Update POST</v-btn>
+                        <!-- back button -->
                         <v-btn
                             type="submit"
                             class="mt-3 white--text"
@@ -91,7 +96,7 @@ export default {
             formData.append("content", this.post.content);
             formData.append("old_image", this.post.image);
 
-            // เช็คว่า่ถ้า validate ผ่านแล้ว ให้ post และ redirect ไปหน้า home
+            // เช็คว่า่ถ้า validate ผ่านแล้ว ให้ update และ redirect ไปหน้า home
             if (this.$refs.form.validate()) {
                 const response = await API.updatePost(this.$route.params.id, formData);
                 this.$router.push({ name: "home", params: { message: response.message } });

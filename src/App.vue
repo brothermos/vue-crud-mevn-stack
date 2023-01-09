@@ -12,7 +12,8 @@
             
             <!-- NAVBAR LIST -->
             <v-list>
-                <v-list-item-group color="primary">
+                <v-list-item-group color="primary" class="pa-2">
+                    <!-- loop ข้อมูลเพื่อมาแสดงแถบ side bar -->
                     <v-list-item v-for="(item, i) in items" :key="i" :to="item.link" link>
                         <v-list-item-icon>
                             <v-icon v-text="item.icon"></v-icon>
